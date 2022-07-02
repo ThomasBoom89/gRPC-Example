@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package example;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "grpc-example/example";
+
+message Test{
+  int32 id = 1;
+  google.protobuf.Timestamp time = 2;
+  string description = 3;
+}
+
+message TestResponse{
+  string msg = 1;
+}
+
+message Timestamp{
+  google.protobuf.Timestamp time = 1;
+}
+
+message Empty{}
+
+service Echo {
+  rpc Hello(Test) returns(TestResponse);
+  rpc GetTimestamp(Empty) returns(Timestamp);
+}
